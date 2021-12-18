@@ -6,10 +6,12 @@
 
 > Shign on, you crazy diamond
 
-This package cannot align two recordings of separate audio events, such as two recordings of separate instances where the same sentence is spoken. If that's what you're looking for, you're looking for [Dynamic Time Warping](https://librosa.org/doc/main/generated/librosa.sequence.dtw.html). If you have two recordings of the same audio event that started and stopped recording at different times, you're in the right place.
+This package cannot align two recordings of separate audio events, such as two recordings of separate instances where the same sentence is spoken. If that's what you're looking for, you're looking for [Dynamic Time Warping](https://librosa.org/doc/main/generated/librosa.sequence.dtw.html).
+
+If you have two recordings of the same audio event that started and stopped recording at different times, you're in the right place.
 
 ### Usage
-For detailed usage description, see the [Documentation](https://knurpsbram.github.io/shign/index.html)
+For detailed usage description, see the [examples](examples) or the [Shign Documentation](https://knurpsbram.github.io/shign/index.html)
 
 Use the python script to align two audios (you need to have the package installed and this repo cloned on your local machine)
 ```
@@ -25,7 +27,7 @@ my_aligned_audio1, my_aligned_audio2 = shift_align(path1="my_file1.wav", path2="
 
 ### Installation
 ```
-git clone <this repo>
+git clone https://github.com/KnurpsBram/shign
 cd shign
 pip install .
 ```
@@ -36,6 +38,6 @@ rm -rf shign
 ```
 
 ### Alternatives
-If you're here, you may want to check these out too
-https://github.com/benfmiller/audalign
-https://github.com/allisonnicoledeal/VideoSync
+If you're here, you may want to check these out too:  
+- https://github.com/benfmiller/audalign
+- https://github.com/allisonnicoledeal/VideoSync
