@@ -1,10 +1,12 @@
 # Shign
-**Shi**ft and al**ign** two recordings of the same audio event. The alignment is found by as the amount of shift that maximizes the correlation between loudness envelopes of the audios. You can obtain aligned audios by either
+**Shi**ft and al**ign** two recordings of the same audio event. The alignment is found by as the amount of shift that maximizes the correlation between loudness envelopes of the audios.
+
+> Shign on, you crazy diamond
+
+You can obtain aligned audios by either
 - padding both audios with silence
 - cropping both audios where there is no overlap
 - cropping and padding one audio to match the start and end of the leading audio
-
-> Shign on, you crazy diamond
 
 This package cannot align two recordings of separate audio events, such as two recordings of separate instances where the same sentence is spoken. If that's what you're looking for, you're looking for [Dynamic Time Warping](https://librosa.org/doc/main/generated/librosa.sequence.dtw.html).
 
