@@ -13,7 +13,7 @@ This package cannot align two recordings of separate audio events, such as two r
 If you have two recordings of the same audio event that started and stopped recording at different times, you're in the right place.
 
 ### Usage
-For detailed usage description, see the [examples](examples) or the [Shign Documentation](https://knurpsbram.github.io/shign/index.html)
+For detailed usage description, see the [examples](examples) or the [Shign Documentation](https://knurpsbram.github.io/shign/shign.html)
 
 Use the python script to align two audios (you need to have the package installed and this repo cloned on your local machine)
 ```
