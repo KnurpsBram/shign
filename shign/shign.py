@@ -177,8 +177,8 @@ def crop_both(audio_a, audio_b, sr_a, sr_b, shift_ms):
 
     # The amount of ms the start of audio_b should shift to the right
     shift_start_ms   = shift_ms
-    shift_start_a_ms = -min(0, shift_start_ms)
-    shift_start_b_ms = max(0, shift_start_ms)
+    shift_start_a_ms = max(0, shift_start_ms)
+    shift_start_b_ms = -min(0, shift_start_ms)
 
     shift_start_a_samples = ms_to_samples(shift_start_a_ms, sr=sr_a)
     shift_start_b_samples = ms_to_samples(shift_start_b_ms, sr=sr_b)
@@ -188,14 +188,16 @@ def crop_both(audio_a, audio_b, sr_a, sr_b, shift_ms):
 
     # The amount of ms the end of audio_b should move to the right
     shift_end_ms   = samples_to_ms(len(audio_a), sr=sr_a) - samples_to_ms(len(audio_b), sr=sr_b)
-    shift_end_a_ms = -min(0, shift_end_ms)
-    shift_end_b_ms = max(0, shift_end_ms)
+    shift_end_a_ms = max(0, shift_end_ms)
+    shift_end_b_ms = -min(0, shift_end_ms)
 
     shift_end_a_samples = ms_to_samples(shift_end_a_ms, sr=sr_a)
     shift_end_b_samples = ms_to_samples(shift_end_b_ms, sr=sr_b)
 
-    audio_a = audio_a[:-shift_end_a_samples]
-    audio_b = audio_b[:-shift_end_b_samples]
+    if shift_end_a_samples > 0:
+        audio_a = audio_a[:-shift_end_a_samples]
+    if shift_end_b_samples > 0:
+        audio_b = audio_b[:-shift_end_b_samples]
 
     return audio_a, audio_b
 
@@ -249,7 +251,7 @@ def pad_and_crop_one_to_match_other(audio_a, audio_b, sr_a, sr_b, shift_ms):
     shift_start_samples = ms_to_samples(shift_start_ms, sr=sr_b)
 
     if shift_start_samples < 0:
-        audio_b = audio_b[shift_start_samples:]
+        audio_b = audio_b[abs(shift_start_samples):]
     else:
         audio_b = np.concatenate([np.zeros(shift_start_samples), audio_b], axis=0)
 
@@ -258,7 +260,7 @@ def pad_and_crop_one_to_match_other(audio_a, audio_b, sr_a, sr_b, shift_ms):
     shift_end_samples = ms_to_samples(shift_end_ms, sr=sr_b)
 
     if shift_end_samples < 0:
-        audio_b = audio_b[:-shift_end_samples]
+        audio_b = audio_b[:-abs(shift_end_samples)]
     else:
         audio_b = np.concatenate([audio_b, np.zeros(shift_end_samples)], axis=0)
 
